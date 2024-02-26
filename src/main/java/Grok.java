@@ -32,15 +32,9 @@ public class Grok
     public Grok(int powerLevel)
     {
 
-        if(powerLevel > MAX_POWER_LEVEL){
-        setPowerLevel(MAX_POWER_LEVEL);
-        isAlive = true;
-        }
-        else{
-            if(powerLevel < 1){
-                isAlive = false;
-            }
-            setPowerLevel(powerLevel);
+        setPowerLevel(powerLevel);
+        if(!isDead()){
+            isAlive = true;
         }
     }
 
@@ -73,8 +67,10 @@ public class Grok
      */
     public void setPowerLevel(int powerLevel)
     {
-
-        this.powerLevel = powerLevel;
+        if(powerLevel > MAX_POWER_LEVEL){
+            this.powerLevel = MAX_POWER_LEVEL;
+        }
+        else{this.powerLevel = powerLevel;}
     }
 
     /*
