@@ -35,33 +35,34 @@ public class Grok
         if(isDead()){
             isAlive = false;
         }
-        }
     }
 
-    // accessor methods
+// accessor methods
 
     /*
      * Returns the power level of this Grok.
      * @return returns the power level of this Grok
      */
-    public int getPowerLevel()
-    {
-        return powerLevel;
+
+
+    public int getPowerLevel() {
+        return powerlevel;
     }
 
     public boolean isDead()
     {
         if(powerLevel < 1){
-            return true;
             isAlive = false;
+            return true;
         }
         else if(powerLevel > 0){
-            return false;
             isAlive = true;
+            return false;
         }
+        return false;
     }
 
-    // mutator methods
+// mutator methods
 
     /*
      * Sets the power level of this Grok.
@@ -91,7 +92,7 @@ public class Grok
             return;
         }
         else{
-        setPowerLevel(powerLevel + pill.getPower());
+            setPowerLevel(powerLevel + pill.getPower());
         }
     }
 
