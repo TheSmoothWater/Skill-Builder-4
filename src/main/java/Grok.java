@@ -33,8 +33,11 @@ public class Grok
     {
 
         setPowerLevel(powerLevel);
-        if(!isDead()){
+        if(isDead()){
             isAlive = true;
+        }
+        else{
+            isAlive = false;
         }
     }
 
