@@ -13,7 +13,7 @@ public class Grok
 
     // instance variables
     private int powerLevel;
-    private boolean isAlive;
+    private boolean isAlive = true;
 
     /*
      * Initializes a Grok object to the default power level of 50.
@@ -21,7 +21,6 @@ public class Grok
     public Grok()
     {
         setPowerLevel(DEFAULT_POWER_LEVEL);
-        isAlive = true;
     }
 
     /*
@@ -34,10 +33,8 @@ public class Grok
 
         setPowerLevel(powerLevel);
         if(isDead()){
-            isAlive = true;
-        }
-        else{
             isAlive = false;
+        }
         }
     }
 
@@ -57,7 +54,7 @@ public class Grok
         if(powerLevel < 1){
             return true;
         }
-        else{
+        else if(powerLevel > 0){
             return false;
         }
     }
@@ -90,24 +87,18 @@ public class Grok
         if(isDead()){
             return;
         }
+        else{
         setPowerLevel(powerLevel + pill.getPower());
+        }
     }
 
     /*
      * Invoked when this Grok takes a hit.  The power level of
      * this Grok is reduced by 5.
      */
-    public void tookHit()
-    {
-
-        if(isDead()){
-            return;
-        }
-        else {
-            setPowerLevel(powerLevel - 5);
-        }
+    public void tookHit() {
+        setPowerLevel(powerLevel - 5);
     }
-
 
     //================== Do Not Touch Code Below this line =============================
     public String toString(){
