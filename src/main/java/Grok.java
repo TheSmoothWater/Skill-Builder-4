@@ -43,12 +43,9 @@ public class Grok
      * Returns the power level of this Grok.
      * @return returns the power level of this Grok
      */
-
-
     public int getPowerLevel() {
-        return powerlevel;
+        return powerLevel;
     }
-
     public boolean isDead()
     {
         if(powerLevel < 1){
