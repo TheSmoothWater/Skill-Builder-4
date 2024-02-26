@@ -1,80 +1,100 @@
-/**
- * This class defines how power pills behave in
- * a game.  The purpose of a power pill is to simply
- * provide a character with power.
- *
- * @author (You)
- * @version (0.1)
- */
-public class PowerPill
+public class Grok
 {
-    private static final int DEFAULT_POWER = 10;
+    private static final int DEFAULT_POWER_LEVEL=50;
+    private static final int MAX_POWER_LEVEL = 100;
 
     // instance variables
-    private int powerSupply;
-    private String name;
+    private int powerLevel;
+    private boolean isAlive = true;
 
-    // constructors
     /*
-     * Initializes this power pill to a default power value
-     * and sets the name of the pill to name.
-     * @param name the name of this power pill.
+     * Initializes a Grok object to the default power level of 50.
      */
-    public PowerPill(String name)
+    public Grok()
     {
-        setName(name);
-        setPower(DEFAULT_POWER);
+        setPowerLevel(DEFAULT_POWER_LEVEL);
     }
 
     /*
-     * Initializes this power pill to the value of power
-     * and sets the name of the pill to name.
-     * @param name the name of this power pill
-     * @param power the power level of this power pill.
+     * Initializes a Grok object to power powerLevel
+     *
+     * @param powerLevel power level of this Grok
      */
-    public PowerPill(String name, int power)
+    public Grok(int powerLevel)
     {
-        setName(name);
-        setPower(power);
+
+        setPowerLevel(powerLevel);
+        if(isDead()){
+            isAlive = false;
+        }
     }
 
-    // accessor methods
+// accessor methods
 
     /*
-     * Returns the power provided by this pill.
-     * @return the power provided by this power pill
+     * Returns the power level of this Grok.
+     * @return returns the power level of this Grok
      */
-    public int getPower()
+    public int getPowerLevel() {
+        return powerLevel;
+    }
+    public boolean isDead()
     {
-        return powerSupply;
+        if(powerLevel < 1){
+            isAlive = false;
+            return true;
+        }
+        else if(powerLevel > 0){
+            isAlive = true;
+            return false;
+        }
+        return false;
+    }
+
+// mutator methods
+
+    /*
+     * Sets the power level of this Grok.
+     * @param powerLevel the power value to set for this Grok.
+     */
+    public void setPowerLevel(int powerLevel)
+    {
+        if(powerLevel > MAX_POWER_LEVEL){
+            this.powerLevel = MAX_POWER_LEVEL;
+        }
+        else if(powerLevel < 1){
+            this.powerLevel = 0;
+            isAlive = false;
+        }
+        else{this.powerLevel = powerLevel;}
     }
 
     /*
-     * Returns the name of this power pill.
-     * @return the name of this power pill
+     * Set the power level of this Grok to the power level of
+     * the pill.
+     * @param pill The PowerPill that the this Grok.  The power
+     * of the pill is added to the power level of this Grok.
      */
-    public String getName()
+    public void takePowerPill(PowerPill pill)
     {
-        return name;
-    }
-
-    // mutator methods
-
-    /*
-     * Sets the power value of this power pill.
-     * @param power the power value to set for this power pill.
-     */
-    public void setPower(int power)
-    {
-        powerSupply = power;
+        if(isDead()){
+            return;
+        }
+        else{
+            setPowerLevel(powerLevel + pill.getPower());
+        }
     }
 
     /*
-     * Set the name of this power pill.
-     * @param name the name to give this power pill.
+     * Invoked when this Grok takes a hit.  The power level of
+     * this Grok is reduced by 5.
      */
-    public void setName(String name)
-    {
-        this.name = name;
+    public void tookHit() {
+        setPowerLevel(powerLevel - 5);
+    }
+
+    //================== Do Not Touch Code Below this line =============================
+    public String toString(){
+        return "Grok:("+powerLevel+","+isAlive+")";
     }
 }
