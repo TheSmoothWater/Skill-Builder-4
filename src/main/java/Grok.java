@@ -21,6 +21,7 @@ public class Grok
     public Grok()
     {
         setPowerLevel(DEFAULT_POWER_LEVEL);
+        isAlive = true;
     }
 
     /*
@@ -33,6 +34,7 @@ public class Grok
 
         if(powerLevel > MAX_POWER_LEVEL){
         setPowerLevel(MAX_POWER_LEVEL);
+        isAlive = true;
         }
         else{
             if(powerLevel < 1){
