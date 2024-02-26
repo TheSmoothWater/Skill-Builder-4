@@ -53,9 +53,11 @@ public class Grok
     {
         if(powerLevel < 1){
             return true;
+            isAlive = false;
         }
         else if(powerLevel > 0){
             return false;
+            isAlive = true;
         }
     }
 
@@ -72,6 +74,7 @@ public class Grok
         }
         else if(powerLevel < 1){
             this.powerLevel = 0;
+            isAlive = false;
         }
         else{this.powerLevel = powerLevel;}
     }
