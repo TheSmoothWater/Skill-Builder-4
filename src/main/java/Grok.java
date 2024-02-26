@@ -6,7 +6,7 @@
  * @author (You Again)
  * @version (0.1)
  */
-public class Grok
+class Grok
 {
     private static final int DEFAULT_POWER_LEVEL=50;
     private static final int MAX_POWER_LEVEL = 100;
@@ -20,7 +20,7 @@ public class Grok
      */
     public Grok()
     {
-        setPowerLevel(DEFAULT_POWER_LEVEL);
+        powerLevel = DEFAULT_POWER_LEVEL;
     }
 
     /*
@@ -30,10 +30,12 @@ public class Grok
      */
     public Grok(int powerLevel)
     {
-
-        setPowerLevel(powerLevel);
-        if(isDead()){
+        if(powerLevel < 1){
+            powerLevel = 0;
             isAlive = false;
+        }
+        else {
+            setPowerLevel(powerLevel);
         }
     }
 
@@ -67,14 +69,19 @@ public class Grok
      */
     public void setPowerLevel(int powerLevel)
     {
-        if(powerLevel > MAX_POWER_LEVEL){
+        if(!isAlive) {
+            return;
+        }
+        if (powerLevel > MAX_POWER_LEVEL) {
             this.powerLevel = MAX_POWER_LEVEL;
         }
-        else if(powerLevel < 1){
+        else if (powerLevel < 1) {
             this.powerLevel = 0;
             isAlive = false;
         }
-        else{this.powerLevel = powerLevel;}
+        else {
+            this.powerLevel = powerLevel;
+        }
     }
 
     /*
