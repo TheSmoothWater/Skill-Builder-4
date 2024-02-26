@@ -70,6 +70,9 @@ public class Grok
         if(powerLevel > MAX_POWER_LEVEL){
             this.powerLevel = MAX_POWER_LEVEL;
         }
+        else if(powerLevel < 1){
+            this.powerLevel = 0;
+        }
         else{this.powerLevel = powerLevel;}
     }
 
@@ -97,8 +100,11 @@ public class Grok
         if(isDead()){
             return;
         }
-        setPowerLevel(powerLevel - 5);
+        else {
+            setPowerLevel(powerLevel - 5);
+        }
     }
+
 
     //================== Do Not Touch Code Below this line =============================
     public String toString(){
